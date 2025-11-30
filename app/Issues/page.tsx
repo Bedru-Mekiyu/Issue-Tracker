@@ -1,8 +1,9 @@
 import { Button } from "@radix-ui/themes"
+import Link from "next/link"
 
 function IssuePage() {
   return (
-   <Button>new issue</Button>
+   <Button><Link href='/Issues/new'>new issue</Link></Button>
   )
 }
 
