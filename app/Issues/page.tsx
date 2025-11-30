@@ -1,8 +1,8 @@
-import React from 'react'
+import { Button } from "@radix-ui/themes"
 
 function IssuePage() {
   return (
-    <div>IssuePage of the user</div>
+   <Button>new issue</Button>
   )
 }
 
