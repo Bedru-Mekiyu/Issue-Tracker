@@ -1,1 +1,2 @@
-declare module "easymde/dist/easymde.min.css";
+// global.d.ts
+declare module "*.css";

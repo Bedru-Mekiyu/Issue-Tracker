@@ -1,7 +1,11 @@
 "use client";
 
 import { Button, Callout, Text, TextField } from "@radix-ui/themes";
-import SimpleMDE from "react-simplemde-editor";
+import dynamic from "next/dynamic";
+
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
 import "easymde/dist/easymde.min.css";
 
 import { useForm, Controller } from "react-hook-form";
@@ -24,6 +28,10 @@ function NewIssuePage() {
     formState: { errors },
   } = useForm<IssueForm>({
     resolver: zodResolver(createIssueSchema),
+    defaultValues: {
+      title: "",
+      description: "",
+    },
   });
 
   const [error, setError] = useState<string | null>(null);
@@ -72,12 +80,12 @@ function NewIssuePage() {
           <Controller
             name="description"
             control={control}
+            defaultValue=""
             render={({ field }) => (
               <SimpleMDE
-                {...field}
-                options={{
-                  spellChecker: false,
-                }}
+                value={field.value}
+                onChange={field.onChange}
+                options={{ spellChecker: false }}
               />
             )}
           />
