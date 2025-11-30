@@ -1,64 +1,98 @@
-'use client'
+"use client";
 
-import { Button, Callout, Text, TextField } from '@radix-ui/themes'
+import { Button, Callout, Text, TextField } from "@radix-ui/themes";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
-import {useForm,Controller} from 'react-hook-form'
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { createIssueSchema } from '@/app/validationSchema';
-import {z} from 'zod'
-import ErrorMessage from '@/app/components/ErrorMessage';
-import Spinner from '@/app/components/Spinner';
- const IssueForm=z.infer< typeof createIssueSchema>
+
+import { useForm, Controller } from "react-hook-form";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { createIssueSchema, IssueForm } from "@/app/validationSchema";
+import ErrorMessage from "@/app/components/ErrorMessage";
+import Spinner from "@/app/components/Spinner";
 
 function NewIssuePage() {
-   const router=useRouter()
- const {register,control,handleSubmit,formState:{errors}}= useForm<IssueForm>({
-  resolver:zodResolver(createIssueSchema )
- });
- const [error,setError]=useState();
- const [isSummitting,setIsSummitting]=useState(false);
- 
- const onsubmit=handleSubmit(
-     async (data)=>{
-      try {
-        setIsSummitting(true)
-          await axios.post('/api/issues',data);
-        router.push('/Issues');
-      } catch (error) {
-        setIsSummitting(false)
-        setError("unexpected error occure")
-      }
-      
-      })
+  const router = useRouter();
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IssueForm>({
+    resolver: zodResolver(createIssueSchema),
+  });
+
+  const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      setIsSubmitting(true);
+      setError(null);
+
+      await axios.post("/api/issues", data);
+      router.push("/Issues");
+    } catch (err) {
+      setIsSubmitting(false);
+      setError("Unexpected error occurred");
+    }
+  });
 
   return (
-    <div>
-      {error&& 
-      <Callout.Root color='red' className='mb-5'>
-        <Callout.Text>{error}</Callout.Text>
-      </Callout.Root>}
-    <form 
-    onSubmit={onsubmit}
-     className='max-w-xl space-y-3' ><TextField.Root placeholder="Title…" {...register('title')}>
-	
-</TextField.Root>
- <ErrorMessage >{errors.title.message}</ErrorMessage>
-<Controller 
-name='description' 
-control={control}
-render={(field)=>(<SimpleMDE placeholder='Description' {...field}/>) }
+    <div className="max-w-xl space-y-4">
+      {error && (
+        <Callout.Root color="red">
+          <Callout.Text>{error}</Callout.Text>
+        </Callout.Root>
+      )}
 
-/>
-<ErrorMessage>{errors.description.message}</ErrorMessage>
+      <form onSubmit={onSubmit} className="space-y-4">
+        <div>
+          <Text as="label" size="2">
+            Title
+          </Text>
+          <TextField.Root
+            {...register("title")}
+            placeholder="Issue title"
+            className="w-full"
+          />
+          {errors.title && (
+            <ErrorMessage>{errors.title.message as string}</ErrorMessage>
+          )}
+        </div>
 
-<Button disabled={isSummitting}>Submit New Issue{isSummitting&& <Spinner/>}  </Button>
-</form>
-</div>
-  )
+        <div>
+          <Text as="label" size="2">
+            Description
+          </Text>
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }) => (
+              <SimpleMDE
+                {...field}
+                options={{
+                  spellChecker: false,
+                }}
+              />
+            )}
+          />
+          {errors.description && (
+            <ErrorMessage>{errors.description.message as string}</ErrorMessage>
+          )}
+        </div>
+
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting && <Spinner />}
+          <span className="ml-2">Submit New Issue</span>
+        </Button>
+      </form>
+    </div>
+  );
 }
 
-export default NewIssuePage
+export default NewIssuePage;
