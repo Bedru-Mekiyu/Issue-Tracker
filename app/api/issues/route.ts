@@ -1,5 +1,6 @@
+// app/api/issues/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/prisma/client";
+import { prisma } from "@/lib/prisma";
 import { createIssueSchema } from "@/app/validationSchema";
 
 export async function POST(request: NextRequest) {

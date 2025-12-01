@@ -2,10 +2,6 @@
 
 import { Button, Callout, Text, TextField } from "@radix-ui/themes";
 import dynamic from "next/dynamic";
-
-const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
-  ssr: false,
-});
 import "easymde/dist/easymde.min.css";
 
 import { useForm, Controller } from "react-hook-form";
@@ -17,6 +13,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema, IssueForm } from "@/app/validationSchema";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
+
+// Load SimpleMDE without SSR
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
 
 function NewIssuePage() {
   const router = useRouter();
@@ -77,20 +78,24 @@ function NewIssuePage() {
           <Text as="label" size="2">
             Description
           </Text>
+
           <Controller
             name="description"
             control={control}
-            defaultValue=""
             render={({ field }) => (
               <SimpleMDE
-                value={field.value}
+                key="simplemde" // prevents editor reset
+                value={field.value} // controlled
                 onChange={field.onChange}
                 options={{ spellChecker: false }}
               />
             )}
           />
+
           {errors.description && (
-            <ErrorMessage>{errors.description.message as string}</ErrorMessage>
+            <ErrorMessage>
+              {errors.description.message as string}
+            </ErrorMessage>
           )}
         </div>
 
