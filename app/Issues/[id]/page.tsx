@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { Card, Flex, Heading, Text } from "@radix-ui/themes";
+import { Is } from "zod/v4/locales";
+import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 
 interface Props {
   params: Promise<{ id: string }>; // important for Next 15/16 with Turbopack
@@ -23,10 +26,17 @@ const IssueDetailPage = async ({ params }: Props) => {
 
   return (
     <>
-      <p>{issue.title}</p>
-      <p>{issue.description}</p>
-      <p>{issue.status}</p>
-      <p>{issue.createdAt.toDateString()}</p>
+      <Heading>{issue.title}</Heading>
+      
+      <Flex className="space-x-3" my='2'> 
+        <IssueStatusBadge status={issue.status}/>
+      <Text>{issue.createdAt.toDateString()}</Text>
+
+      </Flex>
+      <Card>
+     <p>{issue.description}</p>
+      </Card>
+     
     </>
   );
 };
