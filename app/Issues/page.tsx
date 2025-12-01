@@ -1,9 +1,9 @@
-import  prisma  from "@prisma/client"
+import { prisma } from "@/lib/prisma";
 import { Button, Table } from "@radix-ui/themes"
 import Link from "next/link"
 
 async function  IssuePage () {
-const issues=await prisma.Issue.findMany();
+const issues=await prisma.issue.findMany();
   return (
     <>
     <div className="mb-5">
