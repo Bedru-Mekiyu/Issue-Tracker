@@ -22,7 +22,9 @@ const issues=await prisma.issue.findMany();
       {issues?.map((issue)=>(
         <Table.Row key={issue.id}>
           <Table.Cell>
+            <Link href={`/Issues/${issue.id}`}>
             {issue.title}
+            </Link>
             <div className="block md:hidden">
          <IssueStatusBadge status={issue.status}/>
             </div>
