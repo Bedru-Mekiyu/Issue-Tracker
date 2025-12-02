@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { createIssueSchema, IssueForm } from "@/app/validationSchema";
+import { IssueSchema, IssueForm } from "@/app/validationSchema";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
 import { Issue } from "@prisma/client";
@@ -30,7 +30,7 @@ function IssueForms({ issue }: { issue?: Issue }) {
     formState: { errors },
     reset,
   } = useForm<IssueForm>({
-    resolver: zodResolver(createIssueSchema),
+    resolver: zodResolver(IssueSchema),
     defaultValues: {
       // for /Issues/new (no issue) these are empty
       title: issue?.title ?? "",
