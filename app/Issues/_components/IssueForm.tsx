@@ -14,12 +14,7 @@ import { IssueSchema, IssueForm } from "@/app/validationSchema";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
 import { Issue } from "@prisma/client";
-
-// Load SimpleMDE without SSR
-const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
-  ssr: false,
-});
-
+import SimpleMDE from "react-simplemde-editor";
 function IssueForms({ issue }: { issue?: Issue }) {
   const router = useRouter();
 
