@@ -55,7 +55,10 @@ function IssueForms({ issue }: { issue?: Issue }) {
     try {
       setIsSubmitting(true);
       setError(null);
-
+      if(issue)
+        await axios.patch('/api/issues/' +issue.id,data)
+      else 
+        
       // Same behavior as before: always POST to create
       await axios.post("/api/issues", data);
       router.push("/Issues");
@@ -116,8 +119,9 @@ function IssueForms({ issue }: { issue?: Issue }) {
 
         {/* Button code unchanged */}
         <Button type="submit" disabled={isSubmitting}>
+          {issue ? 'Update Issue':'Submit New Issue'}{'   '}
           {isSubmitting && <Spinner />}
-          <span className="ml-2">Submit New Issue</span>
+          
         </Button>
       </form>
     </div>
