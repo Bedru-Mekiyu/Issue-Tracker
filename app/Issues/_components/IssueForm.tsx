@@ -62,6 +62,7 @@ function IssueForms({ issue }: { issue?: Issue }) {
       // Same behavior as before: always POST to create
       await axios.post("/api/issues", data);
       router.push("/Issues");
+      router.refresh(); 
     } catch (err) {
       setIsSubmitting(false);
       setError("Unexpected error occurred");
