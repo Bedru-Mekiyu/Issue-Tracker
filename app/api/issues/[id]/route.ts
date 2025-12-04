@@ -1,5 +1,6 @@
 import { IssueSchema } from "@/app/validationSchema";
 import { prisma } from "@/lib/prisma";
+import delay from "delay";
 import { NextRequest, NextResponse } from "next/server";
 
 type ParamsPromise = Promise<{ id: string }>;
@@ -54,6 +55,7 @@ export async function DELETE(
 
   if(!issue)
     return NextResponse.json({error:'Invalid issue'},{status:404})
+          
 
    await prisma.issue.delete({
     where:{id:issueId}
