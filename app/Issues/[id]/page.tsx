@@ -8,12 +8,15 @@ import Link from "next/link";
 import { EditIssueButton } from "./EditIssueButton";
 import { IssueDetails } from "./IssueDetails";
 import { DeleteIssueButton } from "./DeleteIssueButton";
+import { getServerSession } from "next-auth";
+import authOptions from "@/app/auth/authOptions";
 
 interface Props {
   params: Promise<{ id: string }>; // important for Next 15/16 with Turbopack
 }
 
 const IssueDetailPage = async ({ params }: Props) => {
+const session=  await getServerSession(authOptions); // ensure session is valid
   const resolvedParams = await params;               // unwrap the Promise
   const id = Number(resolvedParams.id);
 
@@ -33,13 +36,15 @@ const IssueDetailPage = async ({ params }: Props) => {
     <Grid columns={{initial:'1',md:'5'}} gap='5'>
       <Box className="md:col-span-4">
       <IssueDetails issue={issue}/>
-      </Box>  
+      </Box>  {
+        session &&
+
       <Box >
         <Flex direction='column' gap='4'>
         <DeleteIssueButton IssueId={issue.id} />
        <EditIssueButton issueId={issue.id}/>
        </Flex>
-      </Box>
+      </Box>}
      
     </Grid>
   );

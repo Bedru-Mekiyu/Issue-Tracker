@@ -1,6 +1,8 @@
+import authOptions from "@/app/auth/authOptions";
 import { IssueSchema } from "@/app/validationSchema";
 import { prisma } from "@/lib/prisma";
 import delay from "delay";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 type ParamsPromise = Promise<{ id: string }>;
@@ -9,6 +11,10 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: ParamsPromise }
 ) {
+    const session =await getServerSession(authOptions);
+   if (!session) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
   // 1) unwrap params (Next.js 16: params is a Promise)
   const { id } = await params;
   const issueId = parseInt(id, 10);
@@ -44,7 +50,10 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: ParamsPromise }
 ) {
-
+  const session =await getServerSession(authOptions);
+   if (!session) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
 
     // 1) unwrap params (Next.js 16: params is a Promise)
   const { id } = await params;
