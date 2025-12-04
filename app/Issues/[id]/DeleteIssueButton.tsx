@@ -2,13 +2,27 @@
 
 import { AlertDialog, Button, Flex } from '@radix-ui/themes'
 import axios from 'axios'
+import { useState } from 'react'
 
 import { useRouter } from 'next/navigation'
-import React from 'react'
 
 export const DeleteIssueButton = ({IssueId}:{IssueId:number}) => {
  const router= useRouter();
+ const [error,setError]=useState(false);
+ const deleteIssue=async ()=>{
+
+              try {
+                
+             await axios.delete('/api/issues/' +IssueId);
+              router.push('/Issues');
+              router.refresh();  
+              } catch (error) {
+                setError(true )
+              }
+         
+            }
   return (
+    <>
 
     <AlertDialog.Root>
       <AlertDialog.Trigger>
@@ -17,7 +31,7 @@ export const DeleteIssueButton = ({IssueId}:{IssueId:number}) => {
       <AlertDialog.Content>
         <AlertDialog.Title>Confirm Deletion</AlertDialog.Title>
         <AlertDialog.Description>
-          Are you sure you wanna delete this issue ? this action is not undone.
+          Are you sure you wanna delete this issue ? this action is undone.
         </AlertDialog.Description>
         <Flex mt='4' gap='3'>
           <AlertDialog.Cancel>
@@ -26,11 +40,7 @@ export const DeleteIssueButton = ({IssueId}:{IssueId:number}) => {
           <AlertDialog.Action>   
             <Button color='red'
 
-            onClick={async ()=>{
-              await axios.delete('/api/issues/' +IssueId);
-              router.push('/Issues');
-              router.refresh();  
-            }}
+            onClick={deleteIssue}
             >
               Delete Issue</Button>
           </AlertDialog.Action>
@@ -39,6 +49,24 @@ export const DeleteIssueButton = ({IssueId}:{IssueId:number}) => {
 
       </AlertDialog.Content>
     </AlertDialog.Root>
+
+    <AlertDialog.Root open={error}>
+      <AlertDialog.Content>
+        <AlertDialog.Title>Issue Deleted</AlertDialog.Title>
+        <AlertDialog.Description>
+          The issue has not been successfully deleted.
+        </AlertDialog.Description>
+        <Flex mt='4' gap='3'>
+          <AlertDialog.Cancel>
+            <Button variant='soft' color='gray' onClick={()=>setError(false)}>ok</Button>
+          </AlertDialog.Cancel>
+        </Flex>
+      </AlertDialog.Content>
+    </AlertDialog.Root>
+
+    </>
   
   )
 }
+
+
