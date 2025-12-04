@@ -8,7 +8,7 @@ function NavBar() {
   
     const links=[
         {label:'Dashboard',href:'/'},
-        {label:'Issues',href:'/Issues'}
+        {label:'Issues',href:'/Issues/list'}
     ]
      const currentPath= usePathname();
   return (

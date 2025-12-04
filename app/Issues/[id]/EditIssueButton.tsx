@@ -7,7 +7,7 @@ export const EditIssueButton = ({issueId}:{issueId:number}) => {
   return (
      <Button>
           <Pencil2Icon/>
-          <Link href={`/Issues/${issueId }/edit`}>Edit Issue</Link>
+          <Link href={`/Issues/edit/${issueId }`}>Edit Issue</Link>
           </Button>
   )
 }
