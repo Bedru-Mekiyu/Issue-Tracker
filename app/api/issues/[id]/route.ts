@@ -1,7 +1,6 @@
 import authOptions from "@/app/auth/authOptions";
 import { patchIssueSchema } from "@/app/validationSchema";
 import { prisma } from "@/lib/prisma";
-import delay from "delay";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -11,37 +10,38 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: ParamsPromise }
 ) {
-    const session =await getServerSession(authOptions);
-   if (!session) {
+  const session = await getServerSession(authOptions);
+  if (!session) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
-  // 1) unwrap params (Next.js 16: params is a Promise)
+
+  // Next.js 16: params is a Promise
   const { id } = await params;
   const issueId = parseInt(id, 10);
 
   const body = await request.json();
   const validation = patchIssueSchema.safeParse(body);
 
-
   if (!validation.success) {
-    return NextResponse.json(validation.error.message, { status: 400 });
-
-
+    return NextResponse.json(validation.error.issues, { status: 400 });
   }
-    const { assignedToUserId ,title,description}=body;
-   if(assignedToUserId){
-    const user = await prisma?.user.findUnique({
+
+  const { assignedToUserId, title, description } = validation.data;
+
+  // If an assignee is provided (not null/undefined), verify user exists
+  if (typeof assignedToUserId !== "undefined" && assignedToUserId !== null) {
+    const user = await prisma.user.findUnique({
       where: { id: assignedToUserId },
     });
     if (!user) {
       return NextResponse.json(
-        { error: "Invalid assignedToUserId" },  { status: 404 }
+        { error: "Invalid assignedToUserId" },
+        { status: 404 }
       );
     }
-   }
+  }
 
-  // 2) now issueId is a real number, Prisma gets a valid id
-  const issue = await prisma?.issue.findUnique({
+  const issue = await prisma.issue.findUnique({
     where: { id: issueId },
   });
 
@@ -49,20 +49,19 @@ export async function PATCH(
     return NextResponse.json({ error: "Invalid issue" }, { status: 404 });
   }
 
-  // build update payload conditionally; use relation connect for the user
-  const updateData: any = {
-    title,
-    description,
-    assignedToUserId
-  };
+  // Build update data only from provided fields
+  const updateData: any = {};
 
-  if (assignedToUserId) {
-    updateData.assignedToUser = {
-      connect: { id: assignedToUserId },
-    };
+  if (typeof title !== "undefined") updateData.title = title;
+  if (typeof description !== "undefined") updateData.description = description;
+
+  // Handle assignment/unassignment via FK field
+  if (typeof assignedToUserId !== "undefined") {
+    // when null => unassign; when string => assign
+    updateData.assignedToUserId = assignedToUserId;
   }
 
-  const updatedIssue = await prisma?.issue.update({
+  const updatedIssue = await prisma.issue.update({
     where: { id: issue.id },
     data: updateData,
   });
@@ -74,24 +73,25 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: ParamsPromise }
 ) {
-  const session =await getServerSession(authOptions);
-   if (!session) {
+  const session = await getServerSession(authOptions);
+  if (!session) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
-    // 1) unwrap params (Next.js 16: params is a Promise)
   const { id } = await params;
   const issueId = parseInt(id, 10);
-   const issue = await prisma?.issue.findUnique({
+
+  const issue = await prisma.issue.findUnique({
     where: { id: issueId },
-  });  
+  });
 
-  if(!issue)
-    return NextResponse.json({error:'Invalid issue'},{status:404})
-          
+  if (!issue) {
+    return NextResponse.json({ error: "Invalid issue" }, { status: 404 });
+  }
 
-   await prisma.issue.delete({
-    where:{id:issueId}
-  })
-return NextResponse.json({})
+  await prisma.issue.delete({
+    where: { id: issueId },
+  });
+
+  return NextResponse.json({});
 }
