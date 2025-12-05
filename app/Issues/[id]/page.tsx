@@ -10,6 +10,7 @@ import { IssueDetails } from "./IssueDetails";
 import { DeleteIssueButton } from "./DeleteIssueButton";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
+import { AssigneeSelect } from "./AssigneeSelect";
 
 interface Props {
   params: Promise<{ id: string }>; // important for Next 15/16 with Turbopack
@@ -41,6 +42,7 @@ const session=  await getServerSession(authOptions); // ensure session is valid
 
       <Box >
         <Flex direction='column' gap='4'>
+          <AssigneeSelect/>
         <DeleteIssueButton IssueId={issue.id} />
        <EditIssueButton issueId={issue.id}/>
        </Flex>
