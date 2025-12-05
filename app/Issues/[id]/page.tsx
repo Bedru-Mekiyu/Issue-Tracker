@@ -42,7 +42,7 @@ const session=  await getServerSession(authOptions); // ensure session is valid
 
       <Box >
         <Flex direction='column' gap='4'>
-          <AssigneeSelect/>
+          <AssigneeSelect issue={issue}/>
         <DeleteIssueButton IssueId={issue.id} />
        <EditIssueButton issueId={issue.id}/>
        </Flex>

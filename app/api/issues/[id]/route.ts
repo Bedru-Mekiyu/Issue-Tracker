@@ -1,5 +1,5 @@
 import authOptions from "@/app/auth/authOptions";
-import { IssueSchema } from "@/app/validationSchema";
+import { patchIssueSchema } from "@/app/validationSchema";
 import { prisma } from "@/lib/prisma";
 import delay from "delay";
 import { getServerSession } from "next-auth";
@@ -20,11 +20,25 @@ export async function PATCH(
   const issueId = parseInt(id, 10);
 
   const body = await request.json();
-  const validation = IssueSchema.safeParse(body);
+  const validation = patchIssueSchema.safeParse(body);
+
 
   if (!validation.success) {
     return NextResponse.json(validation.error.message, { status: 400 });
+
+
   }
+    const { assignedToUserId ,title,description}=body;
+   if(assignedToUserId){
+    const user = await prisma?.user.findUnique({
+      where: { id: assignedToUserId },
+    });
+    if (!user) {
+      return NextResponse.json(
+        { error: "Invalid assignedToUserId" },  { status: 404 }
+      );
+    }
+   }
 
   // 2) now issueId is a real number, Prisma gets a valid id
   const issue = await prisma?.issue.findUnique({
@@ -35,12 +49,22 @@ export async function PATCH(
     return NextResponse.json({ error: "Invalid issue" }, { status: 404 });
   }
 
+  // build update payload conditionally; use relation connect for the user
+  const updateData: any = {
+    title,
+    description,
+    assignedToUserId
+  };
+
+  if (assignedToUserId) {
+    updateData.assignedToUser = {
+      connect: { id: assignedToUserId },
+    };
+  }
+
   const updatedIssue = await prisma?.issue.update({
     where: { id: issue.id },
-    data: {
-      title: validation.data.title,
-      description: validation.data.description,
-    },
+    data: updateData,
   });
 
   return NextResponse.json(updatedIssue, { status: 200 });
