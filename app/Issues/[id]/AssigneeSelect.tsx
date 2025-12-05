@@ -11,13 +11,13 @@ import React, { useEffect, useState } from 'react'
 type IssueWithAssignee = Issue & { assignedToUserId?: string | null };
 
 export const AssigneeSelect = ({issue}:{issue: IssueWithAssignee}) => {
-
- const{data:users,error,isLoading} =   useQuery({
-        queryKey:['users'], 
-        queryFn:() => axios.get<User[]>('/api/users').then(res=>res.data),
-        staleTime:60*1000, 
-        retry:2,
-        });
+  
+ const{data:users,error,isLoading} = userUsers();
+      const assignedIssue=(userId:string) => {
+        axios.patch('/api/issues/' + issue.id, { assignedToUserId: userId || null }).catch(() => {
+          toast.error('Failed to update assignee');
+        } );
+      }
 
 if(isLoading)return <Skeleton />;
 if(error)return null;
@@ -25,11 +25,7 @@ if(error)return null;
     <>
     <Select.Root
       defaultValue={issue.assignedToUserId || ''}
-      onValueChange={(userId) => {
-        axios.patch('/api/issues/' + issue.id, { assignedToUserId: userId || null }).catch(() => {
-          toast.error('Failed to update assignee');
-        } );
-      }}
+      onValueChange={assignedIssue}
     >
       <Select.Trigger placeholder="Assign issue to..." />
       <Select.Content>
@@ -49,3 +45,10 @@ if(error)return null;
     </>
   )
 }
+
+const userUsers=()=>  useQuery({
+        queryKey:['users'], 
+        queryFn:() => axios.get<User[]>('/api/users').then(res=>res.data),
+        staleTime:60*1000, 
+        retry:2,
+        });
