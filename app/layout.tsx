@@ -8,6 +8,7 @@ import { Container, Theme } from "@radix-ui/themes";
 
 import NavBar from "./NavBar";
 import { AuthProvider } from "./auth/Provider";
+import { QueryClientProvider } from "./QueryClientProvider";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body>
+        <QueryClientProvider>
         <AuthProvider>
       <Theme accentColor="violet" radius="large">
         <NavBar/>
@@ -40,6 +42,7 @@ export default function RootLayout({
         
         </Theme>
         </AuthProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
