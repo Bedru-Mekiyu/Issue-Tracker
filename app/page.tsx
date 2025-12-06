@@ -1,11 +1,6 @@
 // app/page.tsx
-import { Pagination } from "./components/Pagination";
-import {LatestIssues}  from "./LatestIssues";  
+import LatestIssues from "./LatestIssues";  // no curly braces
 
 export default async function Home() {
-
-
-  return (
-    <LatestIssues />
-  );
+  return <LatestIssues />;
 }
