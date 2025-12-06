@@ -10,12 +10,13 @@ import { ThickArrowUpIcon } from "@radix-ui/react-icons";
 type Props = {
   searchParams?: Promise<{
     status?: string;
-    orderyBy?: keyof Issue;
+    orderyBy?: string; // comes from URL, treat as string first
   }>;
 };
 
+const ORDERABLE_FIELDS: (keyof Issue)[] = ["title", "status", "createdAt"];
+
 async function IssuePage({ searchParams }: Props) {
-  // Always unwrap once at the top
   const resolved = (await searchParams) ?? {};
 
   const columns: {
@@ -36,11 +37,14 @@ async function IssuePage({ searchParams }: Props) {
     : false;
 
   const status = isValidStatus ? (rawStatus as Status) : undefined;
-  const orderyBy = resolved.orderyBy; // use this later
+
+  const rawOrderBy = resolved.orderyBy; // string from URL, e.g. "statusjk"
+  const isValidOrderBy = ORDERABLE_FIELDS.includes(rawOrderBy as keyof Issue);
+  const orderBy = isValidOrderBy ? (rawOrderBy as keyof Issue) : undefined;
 
   const issues = await prisma.issue.findMany({
     where: status ? { status } : undefined,
-    orderBy: orderyBy ? { [orderyBy]: "asc" } : undefined,
+    orderBy: orderBy ? { [orderBy]: "asc" } : undefined,
   });
 
   return (
@@ -58,14 +62,12 @@ async function IssuePage({ searchParams }: Props) {
                   href={{
                     pathname: "/Issues/list",
                     query: {
-                      // use the resolved plain object
                       ...resolved,
                       orderyBy: column.value,
                     },
                   }}
                 >
-                  {/* compare to `orderyBy` (resolved), not `searchParams` */}
-                  {column.value === orderyBy && (
+                  {column.value === orderBy && (
                     <ThickArrowUpIcon className="inline" />
                   )}
                   {column.label}
