@@ -1,13 +1,17 @@
-import Image from "next/image";
+// app/page.tsx
 import { Pagination } from "./components/Pagination";
-import { Button } from "@radix-ui/themes";
-import { DoubleArrowLeftIcon } from "@radix-ui/react-icons";
 
-export default function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
+  const { page = "1" } = await searchParams;  // await the promise
+  const currentPage = Number.parseInt(page, 10) || 1;
+
   return (
-    <div >
-     <Pagination itemCount={100 } pageSize={10} currentPage={2 }/>
-    
+    <div>
+      <Pagination itemCount={100} pageSize={10} currentPage={currentPage} />
     </div>
   );
 }
