@@ -2,6 +2,7 @@
 import { Pagination } from "@/app/components/Pagination";
 import IssueActions from "./IssueActions";
 import IssueTable from "./IssueTable";
+import { Metadata } from "next";
 
 type Props = {
   searchParams?: Promise<{
@@ -30,4 +31,8 @@ async function IssuePage({ searchParams }: Props) {
 }
 
 export const dynamic = "force-dynamic";
+export const metadata: Metadata = {
+  title: "Issues",
+  description: "Browse, filter, and paginate all issues.",
+};
 export default IssuePage;

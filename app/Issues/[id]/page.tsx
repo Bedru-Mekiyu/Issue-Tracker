@@ -11,6 +11,7 @@ import { DeleteIssueButton } from "./DeleteIssueButton";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
 import { AssigneeSelect } from "./AssigneeSelect";
+import { Metadata } from "next";
 
 interface Props {
   params: Promise<{ id: string }>; // important for Next 15/16 with Turbopack
@@ -50,6 +51,10 @@ const session=  await getServerSession(authOptions); // ensure session is valid
      
     </Grid>
   );
+};
+export const metadata: Metadata = {
+  title: "Issue Details",
+  description: "View details, status, and activity for a single issue.",
 };
 
 export default IssueDetailPage;
