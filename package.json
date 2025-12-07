@@ -20,10 +20,10 @@
     "delay": "^7.0.0",
     "dotenv": "^17.2.3",
     "easymde": "^2.20.0",
-    "next": "16.0.5",
+    "next": "16.0.7",
     "next-auth": "^4.24.13",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
     "react-hook-form": "^7.67.0",
     "react-hot-toast": "^2.6.0",
     "react-icons": "^5.5.0",
@@ -41,9 +41,9 @@
     "@types/react-dom": "^19.2.3",
     "baseline-browser-mapping": "^2.9.4",
     "eslint": "^9",
-    "eslint-config-next": "16.0.5",
+    "eslint-config-next": "16.0.7",
     "prisma": "^6.2.1",
-    "tailwindcss": "^4",
+    "tailwindcss": "^3",
     "typescript": "^5"
   }
 }
