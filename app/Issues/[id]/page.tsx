@@ -12,11 +12,14 @@ import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
 import { AssigneeSelect } from "./AssigneeSelect";
 import { Metadata } from "next";
+import { cache } from "react";
+import { title } from "process";
 
 interface Props {
   params: Promise<{ id: string }>; // important for Next 15/16 with Turbopack
 }
 
+const  fetchUser=cache((issueId:number)=>prisma.issue.findUnique({where:{id:issueId}}))
 const IssueDetailPage = async ({ params }: Props) => {
 const session=  await getServerSession(authOptions); // ensure session is valid
   const resolvedParams = await params;               // unwrap the Promise
@@ -26,9 +29,7 @@ const session=  await getServerSession(authOptions); // ensure session is valid
     notFound();                                      // or handle invalid id
   }
 
-  const issue = await prisma.issue.findUnique({
-    where: { id },                                   // id: number, not NaN
-  });
+  const issue = await fetchUser(parseInt((await params).id))
 
   if (!issue) {
     notFound();
@@ -52,9 +53,12 @@ const session=  await getServerSession(authOptions); // ensure session is valid
     </Grid>
   );
 };
-export const metadata: Metadata = {
-  title: "Issue Details",
-  description: "View details, status, and activity for a single issue.",
-};
+export async function generateMetadata({params}:Props) {
+const issue=await   fetchUser(parseInt((await params).id))
+return{
+  title:issue?.title,
+  description:"details of issue" + issue?.id
+}
+}
 
 export default IssueDetailPage;
