@@ -23,3 +23,6 @@ export const patchIssueSchema = z.object({
     .nullable()
     .optional(),
 });
+
+// add this:
+export type IssueForm = z.infer<typeof IssueSchema>;
