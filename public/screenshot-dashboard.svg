@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#f8f9fa" rx="8"/>
+  <rect x="0" y="0" width="800" height="50" fill="#6d28d9" rx="8"/>
+  <rect x="0" y="25" width="800" height="25" fill="#6d28d9"/>
+  <circle cx="30" cy="25" r="12" fill="#8b5cf6"/>
+  <rect x="55" y="18" width="60" height="14" fill="#a78bfa" rx="4"/>
+  <rect x="140" y="18" width="50" height="14" fill="#a78bfa" rx="4"/>
+  <circle cx="760" cy="25" r="12" fill="#a78bfa"/>
+  <rect x="20" y="75" width="240" height="100" fill="white" rx="8" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="280" y="75" width="240" height="100" fill="white" rx="8" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="540" y="75" width="240" height="100" fill="white" rx="8" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="90" y="100" width="40" height="12" fill="#ef4444" rx="4"/>
+  <rect x="350" y="100" width="60" height="12" fill="#8b5cf6" rx="4"/>
+  <rect x="620" y="100" width="40" height="12" fill="#22c55e" rx="4"/>
+  <text x="140" y="145" font-family="Arial" font-size="32" font-weight="bold" fill="#1e293b">12</text>
+  <text x="400" y="145" font-family="Arial" font-size="32" font-weight="bold" fill="#1e293b">5</text>
+  <text x="670" y="145" font-family="Arial" font-size="32" font-weight="bold" fill="#1e293b">8</text>
+  <rect x="20" y="195" width="380" height="120" fill="white" rx="8" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="50" y="215" width="30" height="8" fill="#ef4444" rx="2"/>
+  <rect x="50" y="235" width="60" height="8" fill="#8b5cf6" rx="2"/>
+  <rect x="50" y="255" width="40" height="8" fill="#22c55e" rx="2"/>
+  <rect x="100" y="212" width="60" height="14" fill="#1e293b" rx="2"/>
+  <rect x="100" y="232" width="60" height="14" fill="#1e293b" rx="2"/>
+  <rect x="100" y="252" width="60" height="14" fill="#1e293b" rx="2"/>
+  <rect x="280" y="212" width="30" height="50" fill="#ef4444" rx="3"/>
+  <rect x="320" y="222" width="30" height="40" fill="#8b5cf6" rx="3"/>
+  <rect x="360" y="232" width="30" height="30" fill="#22c55e" rx="3"/>
+  <rect x="420" y="195" width="360" height="120" fill="white" rx="8" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="440" y="220" font-family="Arial" font-size="12" font-weight="600" fill="#1e293b">Latest Issues</text>
+  <rect x="440" y="235" width="300" height="14" fill="#f1f5f9" rx="3"/>
+  <rect x="440" y="255" width="300" height="14" fill="#f1f5f9" rx="3"/>
+  <rect x="440" y="275" width="300" height="14" fill="#f1f5f9" rx="3"/>
+  <circle cx="720" cy="242" r="6" fill="#cbd5e1"/>
+  <circle cx="720" cy="262" r="6" fill="#cbd5e1"/>
+  <circle cx="720" cy="282" r="6" fill="#cbd5e1"/>
+  <rect x="20" y="340" width="760" height="90" fill="white" rx="8" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="40" y="360" width="60" height="12" fill="#64748b" rx="3"/>
+  <rect x="120" y="360" width="400" height="12" fill="#64748b" rx="3"/>
+  <rect x="540" y="360" width="50" height="12" fill="#64748b" rx="3"/>
+  <rect x="610" y="360" width="80" height="12" fill="#64748b" rx="3"/>
+  <rect x="40" y="385" width="60" height="10" fill="#f1f5f9" rx="2"/>
+  <rect x="120" y="385" width="400" height="10" fill="#f1f5f9" rx="2"/>
+  <rect x="540" y="385" width="50" height="10" fill="#f1f5f9" rx="2"/>
+  <rect x="610" y="385" width="80" height="10" fill="#f1f5f9" rx="2"/>
+  <rect x="40" y="405" width="60" height="10" fill="#f1f5f9" rx="2"/>
+  <rect x="120" y="405" width="400" height="10" fill="#f1f5f9" rx="2"/>
+  <rect x="540" y="405" width="50" height="10" fill="#f1f5f9" rx="2"/>
+  <rect x="610" y="405" width="80" height="10" fill="#f1f5f9" rx="2"/>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#f8f9fa" rx="8"/>
+  <rect x="0" y="0" width="800" height="50" fill="#6d28d9" rx="8"/>
+  <rect x="0" y="25" width="800" height="25" fill="#6d28d9"/>
+  <circle cx="30" cy="25" r="12" fill="#8b5cf6"/>
+  <rect x="55" y="18" width="60" height="14" fill="#a78bfa" rx="4"/>
+  <rect x="140" y="18" width="50" height="14" fill="#a78bfa" rx="4"/>
+  <circle cx="760" cy="25" r="12" fill="#a78bfa"/>
+  <rect x="20" y="70" width="200" height="36" fill="white" rx="6" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="30" y="80" width="30" height="16" fill="#f1f5f9" rx="3"/>
+  <rect x="600" y="70" width="180" height="36" fill="#6d28d9" rx="6"/>
+  <text x="660" y="93" font-family="Arial" font-size="14" fill="white">+ New Issue</text>
+  <rect x="20" y="120" width="760" height="250" fill="white" rx="8" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="30" y="130" width="130" height="14" fill="#64748b" rx="3"/>
+  <rect x="380" y="130" width="60" height="14" fill="#64748b" rx="3"/>
+  <rect x="500" y="130" width="70" height="14" fill="#64748b" rx="3"/>
+  <rect x="740" y="130" width="14" height="14" fill="#64748b" rx="3"/>
+  <line x1="30" y1="152" x2="770" y2="152" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="30" y="165" width="300" height="12" fill="#1e293b" rx="2"/>
+  <rect x="380" y="165" width="50" height="22" fill="#ef4444" rx="4"/>
+  <text x="390" y="180" font-family="Arial" font-size="10" fill="white">Open</text>
+  <text x="500" y="174" font-family="Arial" font-size="12" fill="#64748b">Jun 10, 2026</text>
+  <rect x="740" y="168" width="14" height="14" fill="#cbd5e1" rx="7"/>
+  <line x1="30" y1="195" x2="770" y2="195" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="30" y="208" width="280" height="12" fill="#1e293b" rx="2"/>
+  <rect x="380" y="208" width="60" height="22" fill="#8b5cf6" rx="4"/>
+  <text x="388" y="223" font-family="Arial" font-size="10" fill="white">In Progress</text>
+  <text x="500" y="217" font-family="Arial" font-size="12" fill="#64748b">Jun 9, 2026</text>
+  <line x1="30" y1="238" x2="770" y2="238" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="30" y="251" width="250" height="12" fill="#1e293b" rx="2"/>
+  <rect x="380" y="251" width="50" height="22" fill="#22c55e" rx="4"/>
+  <text x="390" y="266" font-family="Arial" font-size="10" fill="white">Closed</text>
+  <text x="500" y="260" font-family="Arial" font-size="12" fill="#64748b">Jun 8, 2026</text>
+  <line x1="30" y1="281" x2="770" y2="281" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="30" y="294" width="320" height="12" fill="#1e293b" rx="2"/>
+  <rect x="380" y="294" width="50" height="22" fill="#ef4444" rx="4"/>
+  <text x="390" y="309" font-family="Arial" font-size="10" fill="white">Open</text>
+  <text x="500" y="303" font-family="Arial" font-size="12" fill="#64748b">Jun 7, 2026</text>
+  <line x1="30" y1="325" x2="770" y2="325" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="30" y="338" width="260" height="12" fill="#1e293b" rx="2"/>
+  <rect x="380" y="338" width="50" height="22" fill="#ef4444" rx="4"/>
+  <text x="390" y="353" font-family="Arial" font-size="10" fill="white">Open</text>
+  <text x="500" y="347" font-family="Arial" font-size="12" fill="#64748b">Jun 6, 2026</text>
+  <rect x="20" y="390" width="760" height="40" fill="white" rx="8" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="320" y="415" font-family="Arial" font-size="13" fill="#64748b">Page 1 of 3</text>
+  <rect x="420" y="400" width="30" height="22" fill="#f1f5f9" rx="4" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="460" y="400" width="30" height="22" fill="#f1f5f9" rx="4" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="500" y="400" width="30" height="22" fill="#f1f5f9" rx="4" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="540" y="400" width="30" height="22" fill="#f1f5f9" rx="4" stroke="#e2e8f0" stroke-width="1"/>
+</svg>

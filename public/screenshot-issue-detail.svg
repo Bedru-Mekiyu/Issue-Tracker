@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#f8f9fa" rx="8"/>
+  <rect x="0" y="0" width="800" height="50" fill="#6d28d9" rx="8"/>
+  <rect x="0" y="25" width="800" height="25" fill="#6d28d9"/>
+  <circle cx="30" cy="25" r="12" fill="#8b5cf6"/>
+  <rect x="55" y="18" width="60" height="14" fill="#a78bfa" rx="4"/>
+  <rect x="140" y="18" width="50" height="14" fill="#a78bfa" rx="4"/>
+  <circle cx="760" cy="25" r="12" fill="#a78bfa"/>
+  <rect x="20" y="70" width="580" height="360" fill="white" rx="8" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="40" y="105" font-family="Arial" font-size="22" font-weight="bold" fill="#1e293b">Login button misaligned on mobile</text>
+  <rect x="40" y="120" width="50" height="24" fill="#ef4444" rx="4"/>
+  <text x="46" y="136" font-family="Arial" font-size="11" fill="white">Open</text>
+  <text x="100" y="136" font-family="Arial" font-size="13" fill="#64748b">Jun 14, 2026</text>
+  <line x1="40" y1="155" x2="580" y2="155" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="40" y="170" width="520" height="12" fill="#1e293b" rx="2"/>
+  <rect x="40" y="192" width="480" height="12" fill="#475569" rx="2"/>
+  <rect x="40" y="214" width="500" height="12" fill="#475569" rx="2"/>
+  <rect x="40" y="236" width="450" height="12" fill="#64748b" rx="2"/>
+  <rect x="40" y="258" width="520" height="12" fill="#64748b" rx="2"/>
+  <rect x="40" y="280" width="380" height="12" fill="#94a3b8" rx="2"/>
+  <rect x="40" y="302" width="500" height="12" fill="#94a3b8" rx="2"/>
+  <rect x="40" y="324" width="420" height="12" fill="#94a3b8" rx="2"/>
+  <rect x="40" y="346" width="360" height="12" fill="#cbd5e1" rx="2"/>
+  <rect x="620" y="70" width="160" height="150" fill="white" rx="8" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="635" y="85" width="130" height="36" fill="#f1f5f9" rx="6" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="645" y="95" width="20" height="16" fill="#94a3b8" rx="3"/>
+  <text x="670" y="107" font-family="Arial" font-size="12" fill="#64748b">Assign to...</text>
+  <rect x="635" y="130" width="130" height="36" fill="#ef4444" rx="6"/>
+  <text x="665" y="153" font-family="Arial" font-size="13" fill="white">Delete Issue</text>
+  <rect x="635" y="175" width="130" height="36" fill="white" rx="6" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="650" y="186" width="14" height="14" fill="#1e293b" rx="3"/>
+  <text x="670" y="197" font-family="Arial" font-size="13" fill="#1e293b">Edit Issue</text>
+</svg>
