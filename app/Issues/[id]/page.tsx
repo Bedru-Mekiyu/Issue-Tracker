@@ -1,19 +1,13 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { Box, Button, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
-import ReactMarkdown from "react-markdown";
-import IssueStatusBadge from "@/app/components/IssueStatusBadge";
-import { Pencil2Icon } from "@radix-ui/react-icons";
-import Link from "next/link";
+import { Box, Flex, Grid } from "@radix-ui/themes";
 import { EditIssueButton } from "./EditIssueButton";
 import { IssueDetails } from "./IssueDetails";
 import { DeleteIssueButton } from "./DeleteIssueButton";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
 import { AssigneeSelect } from "./AssigneeSelect";
-import { Metadata } from "next";
 import { cache } from "react";
-import { title } from "process";
 
 interface Props {
   params: Promise<{ id: string }>; // important for Next 15/16 with Turbopack

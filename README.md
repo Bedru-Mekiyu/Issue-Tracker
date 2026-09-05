@@ -10,6 +10,7 @@
 </p>
 
 <p align="center">
+  <a href="#"><img src="https://img.shields.io/github/actions/workflow/status/your-org/issue-tracker/ci.yml?branch=main&style=flat-square&label=CI" alt="Build Status"></a>
   <a href="#"><img src="https://img.shields.io/badge/Next.js-16.0-black?style=flat-square&logo=next.js" alt="Next.js 16"></a>
   <a href="#"><img src="https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript" alt="TypeScript 5"></a>
   <a href="#"><img src="https://img.shields.io/badge/Prisma-6-2D3748?style=flat-square&logo=prisma" alt="Prisma 6"></a>
@@ -680,7 +681,7 @@ npx prisma migrate  # Create/apply migrations
 - [ ] **File attachments** on issues
 - [ ] **Dark mode** support
 - [x] **Docker Compose** setup for local development
-- [ ] **GitHub Actions CI** — lint, type-check, test, deploy
+- [x] **GitHub Actions CI** — lint, type-check, test, and build validation
 
 ### Long Term
 
