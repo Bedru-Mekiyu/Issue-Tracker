@@ -50,7 +50,7 @@ export async function PATCH(
   }
 
   // Build update data only from provided fields
-  const updateData: any = {};
+  const updateData: { title?: string; description?: string; assignedToUserId?: string | null } = {};
 
   if (typeof title !== "undefined") updateData.title = title;
   if (typeof description !== "undefined") updateData.description = description;

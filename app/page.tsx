@@ -5,6 +5,8 @@ import LatestIssues from "./LatestIssues";
 import { prisma } from "@/lib/prisma";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const open = await prisma.issue.count({
     where: { status: "OPEN" },

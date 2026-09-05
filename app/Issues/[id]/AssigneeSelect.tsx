@@ -6,13 +6,13 @@ import { Select, Skeleton } from '@radix-ui/themes'
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import toast,{ Toaster } from 'react-hot-toast';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 type IssueWithAssignee = Issue & { assignedToUserId?: string | null };
 
 export const AssigneeSelect = ({issue}:{issue: IssueWithAssignee}) => {
   
- const{data:users,error,isLoading} = userUsers();
+ const{data:users,error,isLoading} = useUsers();
       const assignedIssue=(userId:string) => {
         axios.patch('/api/issues/' + issue.id, { assignedToUserId: userId || null }).catch(() => {
           toast.error('Failed to update assignee');
@@ -46,7 +46,7 @@ if(error)return null;
   )
 }
 
-const userUsers=()=>  useQuery({
+const useUsers=()=>  useQuery({
         queryKey:['users'], 
         queryFn:() => axios.get<User[]>('/api/users').then(res=>res.data),
         staleTime:60*1000, 
