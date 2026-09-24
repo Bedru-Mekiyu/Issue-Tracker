@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="#"><img src="https://img.shields.io/github/actions/workflow/status/your-org/issue-tracker/ci.yml?branch=main&style=flat-square&label=CI" alt="Build Status"></a>
+  <a href="https://github.com/Bedru-Mekiyu/Issue-Tracker/actions"><img src="https://img.shields.io/github/actions/workflow/status/Bedru-Mekiyu/Issue-Tracker/ci.yml?branch=main&style=flat-square&label=CI" alt="Build Status"></a>
   <a href="#"><img src="https://img.shields.io/badge/Next.js-16.0-black?style=flat-square&logo=next.js" alt="Next.js 16"></a>
   <a href="#"><img src="https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript" alt="TypeScript 5"></a>
   <a href="#"><img src="https://img.shields.io/badge/Prisma-6-2D3748?style=flat-square&logo=prisma" alt="Prisma 6"></a>
@@ -395,8 +395,8 @@ List all registered users (no authentication required).
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/issue-tracker.git
-cd issue-tracker
+git clone https://github.com/Bedru-Mekiyu/Issue-Tracker.git
+cd Issue-Tracker
 
 # Install dependencies
 npm install
